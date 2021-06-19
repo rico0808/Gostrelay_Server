@@ -1,8 +1,8 @@
 {
-  "name": "Backed",
+  "name": "backed",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^10.0.0",
+    "crypto-js": "^4.0.0",
+    "dayjs": "^1.10.5",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
