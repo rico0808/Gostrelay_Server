@@ -11,6 +11,9 @@ const { ticket, create_ticket, replay_ticket, close_ticket, ticket_content } = r
 // User
 const { user_info } = require("../Controllers/User/User");
 
+// Server
+const { server, create_server, update_server, delete_server } = require("../Controllers/User/Server");
+
 //==========================
 
 // Auth Router
@@ -48,4 +51,19 @@ ticket_router.post("/:ticket_id", (ctx) => replay_ticket(ctx));
 // 关闭工单
 ticket_router.patch("/:ticket_id", (ctx) => close_ticket(ctx));
 
-module.exports = { auth_router, user_router, ticket_router };
+//==========================
+
+// Server Router
+const server_router = new Router({ prefix: "/server" });
+// 获取服务器
+server_router.get("/", (ctx) => server(ctx));
+// 获取单个服务器
+server_router.get("/:server_id", (ctx) => server(ctx));
+// 新建服务器
+server_router.post("/", (ctx) => create_server(ctx));
+// 编辑服务器
+server_router.patch("/:server_id", (ctx) => update_server(ctx));
+// 删除服务器
+server_router.delete("/", (ctx) => delete_server(ctx));
+
+module.exports = { auth_router, user_router, ticket_router, server_router };

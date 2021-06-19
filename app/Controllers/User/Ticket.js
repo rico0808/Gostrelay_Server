@@ -11,8 +11,10 @@ async function ticket_content(ctx) {
   const { id } = ctx.request.user;
   const { ticket_id } = ctx.request.params;
 
+  // 获取工单
   const ticket = await TicketModel.findOne({ where: { id: ticket_id, user_id: id } });
   ctx.assert(ticket, 400, "获取工单失败");
+  // 获取对应工单回复内容
   const message = await TicketMessage.findAll({ where: { ticket_id } });
   ctx.body = { ticket, message };
 }

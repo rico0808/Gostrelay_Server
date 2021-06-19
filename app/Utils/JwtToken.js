@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { jwtSecurity } = require("../../Config");
 
 function jwt_sign(payload) {
-  const token = jwt.sign(payload, jwtSecurity, { expiresIn: 3000 });
+  const token = jwt.sign(payload, jwtSecurity, { expiresIn: 86400 * 2 });
   return token;
 }
 
