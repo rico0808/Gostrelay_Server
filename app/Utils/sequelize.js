@@ -10,7 +10,7 @@ const sequelize = new Sequelize({
     idle: 10 * 1000,
   },
   logging: false,
-  timezone: "+8:00",
+  timezone: "+08:00",
 });
 
 sequelize
