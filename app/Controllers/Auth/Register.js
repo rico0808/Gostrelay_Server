@@ -54,8 +54,8 @@ async function user_register(ctx) {
 
   // 然后在进行注册
   const slat = password.slice(0, 6);
-  res = await createUser({ email, password: slat_crypto(password, slat), slat });
-  ctx.assert(res, 500, "远端错误，注册账号失败");
+  const user = await createUser({ email, password: slat_crypto(password, slat), slat });
+  ctx.assert(user, 500, "远端错误，注册账号失败");
   ctx.body = { msg: "注册账号成功" };
 }
 
