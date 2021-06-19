@@ -1,7 +1,7 @@
 const UserModel = require("../../Models/UserModel");
 
-async function findOneUser(condition) {
-  const res = await UserModel.findOne({ where: condition });
+async function findOneUser(condition, attributes = {}) {
+  const res = await UserModel.findOne({ where: condition, attributes });
   return res ? res : false;
 }
 

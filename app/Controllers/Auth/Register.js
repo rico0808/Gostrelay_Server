@@ -1,10 +1,9 @@
 const { gene_token, slat_crypto } = require("../../Utils/tools");
 const TokenModel = require("../../../Models/TokenModel");
-const validator = require("validator");
+const { default: validator } = require("validator");
 const sendMail = require("../../Service/MailServer");
 const { webName, webLink } = require("../../../Config");
 const { findOneUser, createUser } = require("../../Service/UserService");
-const dayjs = require("dayjs");
 
 async function get_register_url(ctx) {
   const { email } = ctx.request.body;
