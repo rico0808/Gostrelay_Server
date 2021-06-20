@@ -14,6 +14,9 @@ const { user_info } = require("../Controllers/User/User");
 // Server
 const { server, create_server, update_server, delete_server } = require("../Controllers/User/Server");
 
+// Train
+const { train, create_train, delete_train } = require("../Controllers/User/Train");
+
 //==========================
 
 // Auth Router
@@ -66,4 +69,15 @@ server_router.patch("/:server_id", (ctx) => update_server(ctx));
 // 删除服务器
 server_router.delete("/", (ctx) => delete_server(ctx));
 
-module.exports = { auth_router, user_router, ticket_router, server_router };
+//==========================
+
+// Train Router
+const train_router = new Router({ prefix: "/train" });
+// 获取车次
+train_router.get("/", (ctx) => train(ctx));
+// 添加车次
+train_router.post("/", (ctx) => create_train(ctx));
+// 删除车次
+train_router.delete("/", (ctx) => delete_train(ctx));
+
+module.exports = { auth_router, user_router, ticket_router, server_router, train_router };
