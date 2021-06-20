@@ -19,10 +19,10 @@ async function server(ctx) {
 async function create_server(ctx) {
   const { id } = ctx.request.user;
   const { name, local, ip_addr, bandwidth } = ctx.request.body;
-  ctx.assert(name && local && ip_addr && bandwidth, 400, "服务器信息填写不完整");
+  ctx.assert(name && local && ip_addr && bandwidth && token, 400, "服务器信息填写不完整");
 
   // 创建服务器
-  const res = await ServerModel.create({ user_id: id, name, local, ip_addr, bandwidth });
+  const res = await ServerModel.create({ user_id: id, name, local, ip_addr, bandwidth, token });
   ctx.assert(res, 500, "创建服务器失败");
   ctx.body = { msg: "创建服务器成功" };
 }
@@ -33,14 +33,14 @@ async function update_server(ctx) {
   ctx.assert(server_id, 400, "传递参数错误");
 
   const { name, local, ip_addr, bandwidth } = ctx.request.body;
-  ctx.assert(name && local && ip_addr, bandwidth, 400, "服务器信息填写不完整");
+  ctx.assert(name && local && ip_addr && bandwidth && token, 400, "服务器信息填写不完整");
 
   // 查找服务器是否存在
   const server = await ServerModel.findOne({ where: { user_id: id, id: server_id } });
   ctx.assert(server, 500, "获取服务器失败");
 
   // 更新服务器信息
-  const res = server.update({ name, local, ip_addr, bandwidth });
+  const res = server.update({ name, local, ip_addr, bandwidth, token });
   ctx.assert(res, 500, "更新服务器失败");
   ctx.body = { msg: "更新成功" };
 }
