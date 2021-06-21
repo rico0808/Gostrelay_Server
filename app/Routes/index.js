@@ -4,18 +4,16 @@ const Router = require("@koa/router");
 const { user_login } = require("../Controllers/Auth/Login"); // 登录
 const { get_register_url, user_register } = require("../Controllers/Auth/Register"); // 注册
 const { get_reset_url, user_reset } = require("../Controllers/Auth/Forget"); // 重置
-
 // Ticket
 const { ticket, create_ticket, replay_ticket, close_ticket, ticket_content } = require("../Controllers/User/Ticket");
-
 // User
 const { user_info } = require("../Controllers/User/User");
-
 // Server
 const { server, create_server, update_server, delete_server } = require("../Controllers/User/Server");
-
 // Train
 const { train, create_train, delete_train } = require("../Controllers/User/Train");
+// Order
+const { order, create_order } = require("../Controllers/User/Order");
 
 //==========================
 
@@ -80,4 +78,14 @@ train_router.post("/", (ctx) => create_train(ctx));
 // 删除车次
 train_router.delete("/", (ctx) => delete_train(ctx));
 
-module.exports = { auth_router, user_router, ticket_router, server_router, train_router };
+//==========================
+
+// Order Router
+const order_router = new Router({ prefix: "/order" });
+// 获取订单
+order_router.get("/", (ctx) => order(ctx));
+order_router.get("/:order_id", (ctx) => order(ctx));
+// 创建订单
+order_router.post("/", (ctx) => create_order(ctx));
+
+module.exports = { auth_router, user_router, ticket_router, server_router, train_router, order_router };

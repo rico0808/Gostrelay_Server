@@ -18,7 +18,7 @@ async function server(ctx) {
 
 async function create_server(ctx) {
   const { id } = ctx.request.user;
-  const { name, local, ip_addr, bandwidth } = ctx.request.body;
+  const { name, local, ip_addr, bandwidth, token } = ctx.request.body;
   ctx.assert(name && local && ip_addr && bandwidth && token, 400, "服务器信息填写不完整");
 
   // 创建服务器
@@ -32,7 +32,7 @@ async function update_server(ctx) {
   const { server_id } = ctx.request.params;
   ctx.assert(server_id, 400, "传递参数错误");
 
-  const { name, local, ip_addr, bandwidth } = ctx.request.body;
+  const { name, local, ip_addr, bandwidth, token } = ctx.request.body;
   ctx.assert(name && local && ip_addr && bandwidth && token, 400, "服务器信息填写不完整");
 
   // 查找服务器是否存在

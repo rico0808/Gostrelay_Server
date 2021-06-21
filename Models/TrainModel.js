@@ -10,7 +10,7 @@ const TrainModel = sequelize.define("Train", {
   price: { type: DataTypes.FLOAT, defaultValue: 0, comment: "车位价格" },
   port: { type: DataTypes.STRING, defaultValue: 0, comment: "端口范围" },
   port_num: { type: DataTypes.INTEGER, defaultValue: 0, comment: "端口数量" },
-  traffic: { type: DataTypes.FLOAT, defaultValue: 0, comment: "流量限制" },
+  traffic: { type: DataTypes.BIGINT, defaultValue: 0, comment: "流量限制" },
 });
 
 module.exports = TrainModel;
